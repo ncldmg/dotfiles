@@ -1,0 +1,11 @@
+cargo
+v .zshenv
+vim .zshenv
+vim .zshrc
+ls
+v .config/alacritty
+\
+
+v .config/alacritty
+\
+
