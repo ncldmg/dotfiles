@@ -14,4 +14,6 @@ export SBIN="/usr/local/sbin"
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-export PATH=$PATH:$HOME/.istioctl/bin:$GOBIN:$CARGOBIN:$NPM_MODULES:$PYENV_ROOT:$GOROOT/bin:/usr/local/
+export KREW=${KREW_ROOT:-$HOME/.krew}
+
+export PATH=$PATH:$HOME/.istioctl/bin:$GOBIN:$CARGOBIN:$NPM_MODULES:$PYENV_ROOT:$GOROOT/bin:/usr/local/:$KREW
