@@ -1,4 +1,4 @@
-require("lspconfig").efm.setup {
+require"lspconfig".efm.setup {
     init_options = {documentFormatting = true},
     filetypes = {"lua"},
     settings = {
@@ -14,6 +14,4 @@ require("lspconfig").efm.setup {
     }
 }
 
-lvim.autocommands.custom_groups = {
-  { "BufWritePre ", "*.lua", "lua vim.lsp.buf.formatting_sync(nil, 100)" },
-}
+vim.api.nvim_exec([[ autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100) ]], false)
