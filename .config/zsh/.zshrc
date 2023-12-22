@@ -1,4 +1,5 @@
-export TERM=xterm-256color
+# export TERM=xterm-256color
+export EDITOR='lvim'
 
 # zsh history
 export HISTFILE=~/.local/share/zsh/history
@@ -19,10 +20,6 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 
-# Start tmux on every terminal launch
-alias tmux="TERM=screen-256color-bce tmux"
-if [ "$TMUX" = "" ]; then tmux; fi
-
 # GPG
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -33,15 +30,15 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_RUNTIME_DIR=$HOME/tmp
 
-export GOPRIVATE="github.com/ionos-cloud/*,github.com/ionos-cloud/*/*"
+export GOPRIVATE="github.com/ionos-cloud,github.com/ionos-cloud/*,github.com/ionos-cloud/*/*"
 
 fpath+=(~/.config/ionosctl/completion/zsh)
 
+plugins=(git ssh-agent)
+
+autoload -U promptinit; promptinit
 autoload -Uz compinit
 compinit
-
-# Init starship prompt
-eval "$(starship init zsh)"
 
 # Load alias
 if [ -f $XDG_CONFIG_HOME/zsh/.zshrc.d/alias.sh ]; then
@@ -50,8 +47,7 @@ else
     print "404: $XDG_CONFIG_HOME/zsh/.zshrc.d/alias.sh not found"
 fi
 # Load path
-if [ -f $XDG_CONFIG_HOME/zsh/.zshrc.d/path.sh ]; then
-    source $XDG_CONFIG_HOME/zsh/.zshrc.d/path.sh
+if [ -f $XDG_CONFIG_HOME/zsh/.zshrc.d/path.sh ]; then    source $XDG_CONFIG_HOME/zsh/.zshrc.d/path.sh
 else
     print "404: $XDG_CONFIG_HOME/zsh/.zshrc.d/path.sh not found"
 fi
@@ -69,19 +65,21 @@ else
   export EDITOR='vim'
 fi
 
+# Start tmux on every terminal launch
+alias tmux="tmux"
+if [ "$TMUX" = "" ]; then tmux; fi
+
+# eval "$(starship init zsh)"
+
+autoload -U promptinit; promptinit
+prompt pure
+
+eval `ssh-agent -s`
+ssh-add 
+
 # direnv
 eval "$(direnv hook zsh)"
 
-# Init Pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
-fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/nicolas/.config/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/nicolas/.config/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/nicolas/.config/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/nicolas/.config/google-cloud-sdk/completion.zsh.inc'; fi
 
 # fzf config
 [ -f $XDG_CONFIG_HOME/zsh/.zshrc.d/fzf.sh ] && source $XDG_CONFIG_HOME/zsh/.zshrc.d/fzf.sh
@@ -93,4 +91,9 @@ fi
 
 source <(kubectl completion zsh)
 
-source $XDG_CONFIG_HOME/zsh/.zshrc.d/_istioctl
+source <(helm completion zsh)
+
+source <(d2vm completion $(basename $SHELL))
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
