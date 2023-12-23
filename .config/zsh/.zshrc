@@ -5,6 +5,7 @@ export EDITOR='lvim'
 export HISTFILE=~/.local/share/zsh/history
 export HISTSIZE=500000
 export SAVEHIST=500000
+export SHELL_SESSIONS_DISABLE=1
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
@@ -60,9 +61,9 @@ fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='lim'
 else
-  export EDITOR='vim'
+  export EDITOR='lim'
 fi
 
 # Start tmux on every terminal launch
