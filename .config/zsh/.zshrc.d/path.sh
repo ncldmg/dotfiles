@@ -16,4 +16,8 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 export KREW=${KREW_ROOT:-$HOME/.krew}/bin
 
-export PATH=$PATH:$HOME/.istioctl/bin:$GOBIN:$CARGOBIN:$NPM_MODULES:$PYENV_ROOT:$GOROOT/bin:/usr/local/:$KREW
+export LUA_PATH=~/.config/lvim/lua
+
+export PATH=$PATH:$HOME/.istioctl/bin:$GOBIN:$CARGOBIN:$NPM_MODULES:$PYENV_ROOT:$GOROOT/bin:/usr/local/:$KREW:~/Library/Python/3.9/bin
+
+export PATH=$HOME/.local/bin:$HOME/.docker/bin:$PATH
