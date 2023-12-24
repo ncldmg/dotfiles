@@ -6,11 +6,11 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "./completions.zsh" 2> /dev/null
+source "$XDG_CONFIG_HOME/zsh/.zshrc.d/completions.zsh"
 
 # Key bindings
 # ------------
-[[ $- == *i* ]] && source "./key-bindings.zsh" 2> /dev/null
+source "$XDG_CONFIG_HOME/zsh/.zshrc.d/key-bindings.zsh"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!**/.git/**"'
 export FZF_DEFAULT_OPTS='--height 30% --layout=reverse --border'
