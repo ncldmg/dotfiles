@@ -32,10 +32,8 @@ export XDG_RUNTIME_DIR=$HOME/tmp
 
 export GOPRIVATE="github.com/ionos-cloud,github.com/ionos-cloud/*,github.com/ionos-cloud/*/*"
 
-fpath+=(~/.config/ionosctl/completion/zsh)
-
+# zsh config
 plugins=(git ssh-agent)
-
 autoload -U promptinit; promptinit
 autoload -Uz compinit
 compinit
@@ -60,38 +58,36 @@ fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='lim'
+  export EDITOR='lvim'
 else
-  export EDITOR='lim'
+  export EDITOR='lvim'
 fi
 
 # Start tmux on every terminal launch
-alias tmux="tmux"
-if [ "$TMUX" = "" ]; then tmux; fi
+if command -v tmux &> /dev/null; then
+    if [ "$TMUX" = "" ]; then tmux; fi
+fi
 
-# eval "$(starship init zsh)"
 
+# prompt
 autoload -U promptinit; promptinit
 prompt pure
 
+# reload ssh-agent
 eval `ssh-agent -s`
 ssh-add 
 
 # direnv
 eval "$(direnv hook zsh)"
 
-
 # fzf config
 [ -f $XDG_CONFIG_HOME/zsh/.zshrc.d/fzf.sh ] && source $XDG_CONFIG_HOME/zsh/.zshrc.d/fzf.sh
 
-# virtual env config
-if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-  source "${VIRTUAL_ENV}/bin/activate"
-fi
-
+# completions
+fpath+=(~/.config/ionosctl/completion/zsh)
 source <(kubectl completion zsh)
-
 source <(helm completion zsh)
 
+# go version manager
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
