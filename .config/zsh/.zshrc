@@ -1,4 +1,3 @@
-# export TERM=xterm-256color
 export EDITOR='lvim'
 
 # zsh history
@@ -93,8 +92,6 @@ fi
 source <(kubectl completion zsh)
 
 source <(helm completion zsh)
-
-source <(d2vm completion $(basename $SHELL))
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
