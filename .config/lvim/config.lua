@@ -2,14 +2,15 @@ vim.opt.termguicolors = true
 vim.opt.cmdheight = 0  -- more space in the neovim command line for displaying messages
 vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 4    -- insert 2 spaces for a tab
-vim.opt.wrap = false   -- wrap lines
+vim.opt.wrap = true    -- wrap lines
 vim.opt.number = false -- remove line numbers
 
 lvim.leader = "space"
-lvim.colorscheme = "catppuccin-frappe"
+lvim.colorscheme = "catppuccin-latte"
 
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
+
 lvim.keys.normal_mode["<C-h>"] = ":TmuxNavigateLeft<cr>"
 lvim.keys.normal_mode["<C-j>"] = ":TmuxNavigateUp<cr>"
 lvim.keys.normal_mode["<C-k>"] = ":TmuxNavigateDown<cr>"
@@ -83,6 +84,7 @@ formatters.setup {
     { name = "goimports" },
     { name = "golines" },
     { name = "goimports_reviser" },
+    { name = "clang_format" }
 }
 
 local linters = require "lvim.lsp.null-ls.linters"

@@ -1,0 +1,26 @@
+{
+    "buildFlags": "-tags=intergration,linux",
+    "gofumpt": "true",
+    "codelenses": {
+        "gc_details": "true",
+        "generate": "true",
+        "regenerate_cgo": "true",
+        "tidy": "true",
+        "upgrade_dependency": "true",
+        "vendor": "true"
+    },
+    "diagnosticsDelay": "300ms",
+    "experimentalWatchedFileDelay": "100ms",
+    "symbolMatcher": "fuzzy",
+    "completeUnimported": "true",
+    "staticcheck": "true",
+    "matcher": "Fuzzy",
+    "usePlaceholders": "true",
+    "analyses": {
+        "fieldalignment": "true",
+        "nilness": "true",
+        "shadow": "true",
+        "unusedparams": "true",
+        "unusedwrite": "true"
+    }
+}
